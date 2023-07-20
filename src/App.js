@@ -1,21 +1,22 @@
-import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Header from "./components/Header";
 import Details from "./pages/Details";
-import Card from "./components/Card";
 import { useState } from "react";
 
-const App =()=> {
+const App = () => {
+  const [value,setValue] = useState('')
+  const [currency,setCurrency] = useState("AUD")
   const [info, setInfo] = useState({})
-const [text,setText] = useState('USD')
+  const [rates, setRates] = useState({})
   return (
-   <Router>
-    <Header text = {text} setText = {setText} info= {info}/>
-    <Routes>
-      <Route path="/" element = {<Main info = {info} setInfo= {setInfo}/>}/>
-      <Route path="/details" element = {<Details/>}/>
-    </Routes>
-   </Router>
+    <Router>
+      <Header value = {value} setValue = {setValue} setCurrency = {setCurrency}/>
+      <Routes>
+        <Route path="/" element={<Main  currency= {currency} info = {info} setInfo={setInfo} rates = {rates} setRates = {setRates}/>} />
+        <Route path="/details" element={<Details  currency = {currency}  rates = {rates}/>} />
+      </Routes>
+    </Router>
   );
 }
 

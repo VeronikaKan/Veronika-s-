@@ -1,16 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useState } from 'react'
 
-const Header = ({text,setText,info}) => {
-    const[valute,setValute] = useState('')
-    const handleKey = (e) => {
-if(e.key === 'Enter'){
-    setText (valute)
+
+const Header = ({value,setValue,setCurrency}) => {
+
+    const handleKeyDown = (e) => {
+if( e.target.value !== "" && e.key === 'Enter') {
+    setCurrency (value)
 }
     }
     const handleText = (e) => {
-        setValute(e.target.value)
+        setValue(e.target.value)
     } 
   return (
     <>
@@ -20,7 +20,7 @@ if(e.key === 'Enter'){
 <NavLink to='/' className='header__logo'>
     $
 </NavLink>
-<input type='text' className='header__input' onInput={handleText} onKeyDown={handleKey} placeholder='Поиск'/>
+<input type='text' className='header__input' onInput={handleText} onKeyDown={handleKeyDown} placeholder='Поиск'/>
     </div>
 
 </div>
